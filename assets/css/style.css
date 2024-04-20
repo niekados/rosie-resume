@@ -22,6 +22,24 @@
     background-color: #525252;
 }
 
+/* ------------------ Special paddings/margins/text */
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.general-sub {
+    font-family: "Exo", sans-serif;
+    font-weight: 300;
+    color: #fafafa;
+}
+
 /* ------------------ Heading */
 header {
     margin: 0;
@@ -116,6 +134,15 @@ To override the '.menucontainer' font-size we will use id to target nav menu ite
 /* ------------------ hover.css */
 
 .hvr-sweep-to-bottom:before {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     height: 120px;
+}
+
+/* ------------------ Footer */
+
+footer {
+    background-color: #525252;
+    color: #fafafa;
+    min-height: 120px;
+    margin: 0;
 }
