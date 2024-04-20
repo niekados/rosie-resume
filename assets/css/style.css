@@ -73,6 +73,10 @@ so the spaces are not displayed.*/
 /* Container font-size '0' are applied to our menu items too and they are not visible anymore. 
 To override the '.menucontainer' font-size we will use id to target nav menu items */
 
+#nav {
+    margin: 0;
+}
+
 #nav li {
     font-size: 14px;
     padding: 0;
@@ -107,4 +111,11 @@ To override the '.menucontainer' font-size we will use id to target nav menu ite
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 2px;
+}
+
+/* ------------------ hover.css */
+
+.hvr-sweep-to-bottom:before {
+    background-color: rgba(0,0,0,0.2);
+    height: 120px;
 }
