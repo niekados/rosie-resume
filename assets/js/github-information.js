@@ -15,6 +15,24 @@ function userInformationHTML(user) {
     </div>`
 }
 
+function repoInformationHTML(repos) {
+    if (repos.length == 0) {
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+
+    var listItemsHTML = repos.map(function(repo) {
+        return `<li>
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`;
+    });
+    return `<div class="clearfix repo-list">
+                <p><strong>Repo List:</strong></p>
+                <ul>
+                    ${listItemsHTML.join("\n")}
+                </ul>
+            </div>`
+}
+
 function fetchGitHubInformation(event) {
     var username = $("#gh-username").val(); // get elemnt with id gh-username and get it's value
     if (!username) {
@@ -30,11 +48,17 @@ function fetchGitHubInformation(event) {
 
     // JQuery promise, takes function as first argument
     $.when(
-        $.getJSON(`https://api.github.com/users/${username}`)
+        $.getJSON(`https://api.github.com/users/${username}`),
+        $.getJSON(`https://api.github.com/users/${username}/repos`)
     ).then(
-        function (response) {
-            var userData = response;
+        //when we do two calls like this, the .then method packs up response in to arrays.
+        //and each one is a first element of the array, that's why we will need to take use indexes ex.: firstResponse[0]; secondResponse[0]
+        // * when it was one call, we didint need to use indexes.
+        function (firstResponse, secondResponse) {
+            var userData = firstResponse[0];   
+            var repoData = secondResponse[0];
             $("#gh-user-data").html(userInformationHTML(userData));
+            $("#gh-repo-data").html(repoInformationHTML(repoData));
         },
         function (errorResponse) {
             if (errorResponse.status === 404) {
