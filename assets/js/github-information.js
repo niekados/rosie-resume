@@ -34,6 +34,9 @@ function repoInformationHTML(repos) {
 }
 
 function fetchGitHubInformation(event) {
+    $("#gh-user-data").html(""); //bug fix empty user name and repo data, so it doesn't display anything if its empty
+    $("#gh-repo-data").html("");
+
     var username = $("#gh-username").val(); // get elemnt with id gh-username and get it's value
     if (!username) {
         $("#gh-user-data").html(`<h2>Please enter the GitHub username</h2>`);
@@ -72,3 +75,5 @@ function fetchGitHubInformation(event) {
         });
 
 }
+
+$(document).ready(fetchGitHubInformation); // when document loads, it will execute and fetchGithubInformation
